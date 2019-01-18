@@ -37,11 +37,39 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
+        <!-- 배포 서버 환경 - local, dev, prod -->
+        <env>local</env>
+
+        <!-- 빌프 Final 프로젝트명 -->
+        <finalName>ROOT</finalName>
+
+        <!-- Context Root Setting - ROOT는 "/"로 설정 -->
+        <m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
+
         <!-- ==================== Spring Boot Cloud ==================== -->
 		<spring-cloud.version>Greenwich.RC2</spring-cloud.version>
-	</properties>
+
+        <!-- ==================== Third Party ==================== -->
+        <jjwt.version>0.9.1</jjwt.version>
+
+        <!-- ==================== SonarQube에서 분석 제외 파일 설정 (공백없이 설정) ==================== -->
+        <sonar.exclusions>pom.xml,**/package-info.java,**/Application.java,**/*CacheConfiguration.java,**/DataSource*Configuration.java,**/LifecycleConfiguration.java,**/Property.java,**/ServletInitializer.java,**/SwaggerConfiguration.java,**/WebMvcConfiguration.java,**/CustomModelAttributeArgumentResolver.java,**/GlobalControllerExceptionHandler.java,**/*Test*.java,**/**.css,**/**.js,**/**.jsp,**/**.html</sonar.exclusions>
+    </properties>
 	<dependencies>
         <!-- ==================== Spring Boot ==================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -50,7 +78,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -69,7 +96,70 @@
         </dependency>
 
         <!-- ==================== Third Party ==================== -->
+        <!-- Jackson Library -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+        </dependency>
+        <!-- Ehcache -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+        </dependency>
 
+        <!-- Json Web Token -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+
+        <!-- Joda Time -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+
+        <!-- AspectJ - Configuration 설정 시 EnableAspectJAutoProxy 사용 시 필요. -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+
+        <!-- Apache Commons -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <!-- Spring MVC 에 JSR 303 Bean Validator 적용 시 Hibernate Validator가 없으면 에러 발생. -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator-annotation-processor</artifactId>
+        </dependency>
+
+        <!-- ==================== Web Jars versions ==================== -->
+        <!-- Web Jars의 정확한 버전을 몰라도 사용할 수 있도록한다. ex. /webjars/jquery/jquery.min.js -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>webjars-locator-core</artifactId>
+        </dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

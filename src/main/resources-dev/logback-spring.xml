@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="30 seconds" debug="true">
+
+    <property name="max.history" value="30" />
+    <property name="logback.home" value="${catalina.base}/logs" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%date{ISO8601}] [PID:${PID:-}] [%thread] %-5level: %logger.%M\(%line\) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logback.home}/social-api.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logback.home}/archive/social-api.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${max.history}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%date{ISO8601}] [PID:${PID:-}] [%thread] %-5level: %logger{36}\(%M:%line\) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logback.home}/social-api-error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logback.home}/archive/social-api-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${max.history}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%date{ISO8601}] [PID:${PID:-}] [TID:%X{Transaction-ID}] [%thread] %-5level: %logger{36}\(%M:%line\) - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+    <appender name="QUERY" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logback.home}/social-api-query.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${logback.home}/archive/social-api-query.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>3</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>20MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>[PID:${PID:-}] [TID:%X{Transaction-ID}] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.ha.social" level="DEBUG" additivity="false">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="FILE-ERROR" />
+    </logger>
+
+    <!-- 3rdparty Loggers -->
+    <logger name="org.apache.curator" level="DEBUG" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="org.apache.ibatis.io" level="INFO" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="org.apache.http" level="DEBUG" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="org.apache.zookeeper" level="INFO" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="org.mybatis.spring" level="INFO" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="org.springframework.jdbc" level="INFO" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+    <logger name="org.springframework.transaction" level="INFO" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <!-- HikariCP DB Pool Stats -->
+    <logger name="com.zaxxer.hikari.pool.HikariPool.logPoolState" level="DEBUG" additivity="false">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <!-- SQL Log. -->
+    <logger name="jdbc.audit" level="OFF" additivity="false">
+        <appender-ref ref="QUERY" />
+    </logger>
+    <logger name="jdbc.connection" level="WARN" additivity="false">
+        <appender-ref ref="QUERY" />
+    </logger>
+    <logger name="jdbc.resultset" level="OFF" additivity="false">
+        <appender-ref ref="QUERY" />
+    </logger>
+    <logger name="jdbc.resultsettable" level="INFO" additivity="false">
+        <appender-ref ref="QUERY" />
+    </logger>
+    <logger name="jdbc.sqlonly" level="INFO" additivity="false">
+        <appender-ref ref="QUERY" />
+    </logger>
+    <logger name="jdbc.sqltiming" level="OFF" additivity="false">
+        <appender-ref ref="QUERY" />
+    </logger>
+
+    <root level="INFO" />
+</configuration>
