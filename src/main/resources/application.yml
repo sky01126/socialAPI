@@ -30,6 +30,12 @@ server:
   port: ${app.server.port:8080}
   servlet:
     context-path: '/'
+  tomcat:
+    max-connections: 10000
+    max-http-post-size: 2MB
+    max-swallow-size: 2MB
+    max-threads: 200
+    uri-encoding: UTF-8
 
 # ----------------------------------------
 # Spring info
@@ -37,27 +43,21 @@ server:
 spring:
   application:
     name: '@artifactId@'
-    
   banner:
     location: classpath:banner.txt
-    
   devtools:
     restart:
       enabled: true
       exclude: 'META-INF/maven/**,META-INF/resources/**,resources/**,static/**,public/**,templates/**,**/*Test.class,**/*Tests.class,git.properties,META-INF/build-info.properties'
-      
   # Expose management beans to the JMX domain.
   jmx:
     enabled: false
-    
   main:
     allow-bean-definition-overriding: true
-    
   # Spring MVC
   mvc:
     # 404 에러를 ControllerAdvice에서 처리할 수 있도록 설정
     throw-exception-if-no-handler-found: true
-
   security:
     user:
       name: admin
