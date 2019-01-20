@@ -40,6 +40,9 @@
         <!-- 배포 서버 환경 - local, dev, prod -->
         <env>local</env>
 
+        <!-- Apache Commons -->
+        <commons-io.version>2.6</commons-io.version>
+
         <!-- 빌프 Final 프로젝트명 -->
         <finalName>ROOT</finalName>
 
@@ -51,6 +54,7 @@
 
         <!-- ==================== Third Party ==================== -->
         <jjwt.version>0.9.1</jjwt.version>
+        <guava.version>27.0.1-jre</guava.version>
 
         <!-- ==================== SonarQube에서 분석 제외 파일 설정 (공백없이 설정) ==================== -->
         <sonar.exclusions>pom.xml,**/package-info.java,**/Application.java,**/*CacheConfiguration.java,**/DataSource*Configuration.java,**/LifecycleConfiguration.java,**/Property.java,**/ServletInitializer.java,**/SwaggerConfiguration.java,**/WebMvcConfiguration.java,**/CustomModelAttributeArgumentResolver.java,**/GlobalControllerExceptionHandler.java,**/*Test*.java,**/**.css,**/**.js,**/**.jsp,**/**.html</sonar.exclusions>
@@ -69,6 +73,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.vaadin.external.google</groupId>
+                    <artifactId>android-json</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -114,17 +128,28 @@
             <artifactId>jackson-datatype-joda</artifactId>
         </dependency>
 
-        <!-- Ehcache -->
+        <!-- Google Guava Util -->
         <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
 
-        <!-- Json Web Token -->
+        <!-- Json Web Token - Fix Java9 jaxb problem -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${jjwt.version}</version>
+        </dependency>
+
+        <!-- Ehcache -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
         </dependency>
 
         <!-- JSTL -->
@@ -146,6 +171,11 @@
         </dependency>
 
         <!-- Apache Commons -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
