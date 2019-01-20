@@ -1,3 +1,13 @@
+/*
+ * Copyright(C) 2017 KT Hitel Co., Ltd. all rights reserved.
+ *
+ * This is a proprietary software of KTH corp, and you may not use this file except in
+ * compliance with license with license agreement with KTH corp. Any redistribution or use of this
+ * software, with or without modification shall be strictly prohibited without prior written
+ * approval of KTH corp, and the copyright notice above does not evidence any actual or
+ * intended publication of such software.
+ */
+
 package com.ha.social;
 
 import org.slf4j.Logger;
@@ -7,6 +17,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+/**
+ * Spring Boot Application
+ *
+ * @author <a href="mailto:ky.son@kt.com"><b>손근양</b></a>
+ * @version 1.0.0
+ * @since 7.0
+ */
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
 

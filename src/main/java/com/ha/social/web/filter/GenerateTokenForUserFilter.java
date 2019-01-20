@@ -42,7 +42,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.session.NullAuthenticatedSessionStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -57,7 +56,6 @@ import com.fasterxml.jackson.databind.ObjectWriter;
  * @see AbstractAuthenticationProcessingFilter
  * @since 7.0
  */
-@Component
 public class GenerateTokenForUserFilter extends AbstractAuthenticationProcessingFilter {
 
 	private static final Logger log = LoggerFactory.getLogger(GenerateTokenForUserFilter.class);

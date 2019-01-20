@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
  *
  * @author <a href="mailto:ky.son@kt.com"><b>손근양</b></a>
  * @version 1.0.0
- * @see org.springframework.security.core.userdetails.User
+ * @see UserDetails
  * @since 7.0
  */
 public class UserToken implements UserDetails {

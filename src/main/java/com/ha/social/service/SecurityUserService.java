@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.google.common.util.concurrent.AbstractService;
 import com.ha.social.security.model.User;
 import com.ha.social.security.model.UserToken;
 
@@ -23,7 +22,6 @@ import com.ha.social.security.model.UserToken;
  *
  * @author <a href="mailto:ky.son@kt.com"><b>손근양</b></a>
  * @version 1.0.0
- * @see AbstractService
  * @since 7.0
  */
 @Service

@@ -7,6 +7,7 @@
  * approval of KTH corp, and the copyright notice above does not evidence any actual or
  * intended publication of such software.
  */
+
 package com.ha.social.service;
 
 import org.apache.commons.lang3.StringUtils;
@@ -26,7 +27,6 @@ import com.ha.social.web.util.JWTUtils;
  *
  * @author <a href="mailto:ky.son@kt.com"><b>손근양</b></a>
  * @version 1.0.0
- * @see AbstractProperty
  * @since 7.0
  */
 @Service

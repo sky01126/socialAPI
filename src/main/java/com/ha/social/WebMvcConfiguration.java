@@ -39,7 +39,7 @@ import org.springframework.web.servlet.view.JstlView;
  *
  * @author <a href="mailto:ky.son@kt.com"><b>손근양</b></a>
  * @version 1.0.0
- * @see AbstractWebMvcConfiguration
+ * @see WebMvcConfigurer
  * @since 7.0
  */
 @EnableWebMvc

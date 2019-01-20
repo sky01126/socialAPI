@@ -27,7 +27,7 @@ import com.google.common.collect.Sets;
  *
  * @author <a href="mailto:ky.son@kt.com"><b>손근양</b></a>
  * @version 1.0.0
- * @see SecurityGroups
+ * @see Serializable
  * @since 7.0
  */
 @Component

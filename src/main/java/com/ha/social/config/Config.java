@@ -7,6 +7,7 @@
  * approval of KTH corp, and the copyright notice above does not evidence any actual or
  * intended publication of such software.
  */
+
 package com.ha.social.config;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -16,7 +17,6 @@ import org.apache.commons.codec.digest.DigestUtils;
  *
  * @author <a href="개발자 메일주소"><b>개발자명</b></a>
  * @version 1.0.0
- * @see
  * @since 7.0
  */
 public class Config {
