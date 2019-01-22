@@ -22,6 +22,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  *
  * @author <a href="mailto:ky.son@kt.com"><b>손근양</b></a>
  * @version 1.0.0
+ * @see SpringBootServletInitializer
  * @since 7.0
  */
 @SpringBootApplication
